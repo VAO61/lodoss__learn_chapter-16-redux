@@ -1,0 +1,46 @@
+.users-list {
+  &__user {
+    display: flex;
+    width: 515px;
+    padding-left: 20px;
+    border-bottom: solid 1px $color-text_lighter;
+    // transform: translateX(-115px);
+  }
+
+  &__avatar,
+  &__desc {
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    width: 74px;
+    height: 74px;
+  }
+
+  &__desc {
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-grow: 2;
+    justify-content: space-a;
+    // flex: 1 1 auto;
+  }
+
+  &__name {
+    font-size: 2em;
+    line-height: 1.1em;
+  }
+
+  &__location {
+    line-height: 1.2em;
+    & i {
+      padding-right: 5px;
+    }
+  }
+
+  &__link {
+    line-height: 1.4em;
+    color: $color-text_lighter;
+  }
+}
