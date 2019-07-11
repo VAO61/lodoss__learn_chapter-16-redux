@@ -5,3 +5,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 import './app/JQueryDOM.js';
+import './app/getJSON.js';
