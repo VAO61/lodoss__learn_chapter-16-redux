@@ -2,22 +2,14 @@ import '../sass/style.scss';
 import './app/JQueryDOM.js';
 import { apiGetUser, apiGetUserList } from './app/api';
 import store from './store/store';
-import { updateUserInfo, updateUserList } from './store/actions';
+import { updateUserList } from './store/actions';
+import { renderingUserWidget, renderingUserList } from './app/renderingUserDOM';
 
 if (process.env.NODE_ENV !== 'production') {
   require('file-loader!../html/index.html');
 }
 
-apiGetUserList().then(userList => {
-  store.dispatch(updateUserList(userList));
-});
-
-store.subscribe(() => {
-  const state = store.getState();
-  document.title = state.user.login;
-});
-
-document.querySelector('#change-title').addEventListener('click', async () => {
+const refresh = async () => {
   const state = store.getState();
   const randomIndexes = [];
 
@@ -31,5 +23,12 @@ document.querySelector('#change-title').addEventListener('click', async () => {
     apiGetUser(state.userList[index].login)
   );
   const responses = await Promise.all(requestes);
-  console.log(responses);
+  const userWidgets = responses.map(user => renderingUserWidget(user));
+  renderingUserList(userWidgets);
+};
+
+apiGetUserList().then(userList => {
+  store.dispatch(updateUserList(userList));
+  refresh();
 });
+document.querySelector('#refresh').addEventListener('click', refresh);
