@@ -1,4 +1,9 @@
-import { UPDATE_USER_INFO, UPDATE_USER_LIST } from './constants';
+import {
+  ADD_USER_DETAIL_LIST,
+  REMOVE_USER_DETAIL_LIST,
+  CLEAR_USER_DETAIL_LIST,
+  UPDATE_USER_LIST
+} from './constants';
 
 export const updateUserList = userList => {
   return {
@@ -7,9 +12,22 @@ export const updateUserList = userList => {
   };
 };
 
-export const updateUserInfo = user => {
+export const addUser = user => {
   return {
-    type: UPDATE_USER_INFO,
+    type: ADD_USER_DETAIL_LIST,
     payload: user
+  };
+};
+
+export const removeUser = userId => {
+  return {
+    type: REMOVE_USER_DETAIL_LIST,
+    payload: userId
+  };
+};
+
+export const clearUsers = () => {
+  return {
+    type: CLEAR_USER_DETAIL_LIST
   };
 };

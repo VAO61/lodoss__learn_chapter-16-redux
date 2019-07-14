@@ -1,3 +1,8 @@
+import store from '../store/store';
+import { removeUser, addUser } from '../store/actions';
+import { apiGetUser } from './api';
+import { getRandomLogin } from './utils';
+
 export const renderingUserWidget = user => {
   const widgetUser = document.createElement('div');
   widgetUser.className = 'users-list__user'; // Имеется старый id (animation)
@@ -51,6 +56,11 @@ export const renderingUserWidget = user => {
 
   const btnRemove = document.createElement('button');
   btnRemove.className = 'btn widget-users__btn widget-users__btn_remove';
+  btnRemove.addEventListener('click', async () => {
+    store.dispatch(removeUser(user.id));
+    const response = await apiGetUser(getRandomLogin());
+    store.dispatch(addUser(response));
+  });
   controlContainer.appendChild(btnRemove);
 
   // ---------------------- //

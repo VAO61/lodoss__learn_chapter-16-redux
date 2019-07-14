@@ -1,27 +1,33 @@
 import '../sass/style.scss';
 import { apiGetUser, apiGetUserList } from './app/api';
 import store from './store/store';
-import { updateUserList } from './store/actions';
+import { updateUserList, addUser, clearUsers } from './store/actions';
 import { renderingUserWidget, renderingUserList } from './app/renderingUserDOM';
+import { getRandomLogin } from './app/utils';
 
 if (process.env.NODE_ENV !== 'production') {
   require('file-loader!../html/index.html');
 }
 
-const refresh = async () => {
+store.subscribe(() => {
   const state = store.getState();
-  const randomIndexes = [];
+  const widgets = state.userDetailList.map(user => renderingUserWidget(user));
+  renderingUserList(widgets);
+});
+
+const refresh = async () => {
+  store.dispatch(clearUsers());
+  const requestes = [];
 
   for (let i = 0; i < 3; i++) {
-    randomIndexes[i] = Math.floor(Math.random() * state.userList.length);
+    requestes.push(apiGetUser(getRandomLogin()));
   }
 
-  const requestes = randomIndexes.map(index =>
-    apiGetUser(state.userList[index].login)
-  );
-  const responses = await Promise.all(requestes);
-  const userWidgets = responses.map(user => renderingUserWidget(user));
-  renderingUserList(userWidgets);
+  const users = await Promise.all(requestes);
+  users.forEach(user => {
+    store.dispatch(addUser(user));
+  });
+  // renderingUserList(userWidgets);
 };
 
 apiGetUserList().then(userList => {
