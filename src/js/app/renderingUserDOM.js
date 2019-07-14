@@ -35,7 +35,14 @@ export const renderingUserWidget = user => {
 
   const controlContainer = document.createElement('div');
   controlContainer.className = 'widget-users__control';
-  controlContainer.id = 'showMeMore'; // Возможно временно
+  controlContainer.addEventListener('mouseenter', () => {
+    widgetUser.classList.toggle('users-list__user_active-event', true);
+    userDesc.classList.toggle('users-list__desc_active-event', true);
+  });
+  controlContainer.addEventListener('mouseleave', () => {
+    widgetUser.classList.toggle('users-list__user_active-event', false);
+    userDesc.classList.toggle('users-list__desc_active-event', false);
+  });
   widgetUser.appendChild(controlContainer);
 
   const btnMore = document.createElement('button');

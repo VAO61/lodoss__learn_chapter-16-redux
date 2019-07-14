@@ -1,5 +1,4 @@
 import '../sass/style.scss';
-import './app/JQueryDOM.js';
 import { apiGetUser, apiGetUserList } from './app/api';
 import store from './store/store';
 import { updateUserList } from './store/actions';
@@ -16,8 +15,6 @@ const refresh = async () => {
   for (let i = 0; i < 3; i++) {
     randomIndexes[i] = Math.floor(Math.random() * state.userList.length);
   }
-
-  console.log(randomIndexes);
 
   const requestes = randomIndexes.map(index =>
     apiGetUser(state.userList[index].login)
