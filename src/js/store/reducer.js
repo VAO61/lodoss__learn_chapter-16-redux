@@ -1,15 +1,21 @@
+import { UPDATE_USER_INFO, UPDATE_USER_LIST } from './constants';
+
 const initialState = {
+  userList: [],
   user: {}
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'UpdateUser':
+    case UPDATE_USER_LIST:
       return {
         ...state,
-        user: {
-          id: Math.random()
-        }
+        userList: action.payload
+      };
+    case UPDATE_USER_INFO:
+      return {
+        ...state,
+        user: action.payload
       };
     default:
       return state;
