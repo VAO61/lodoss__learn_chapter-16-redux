@@ -5,7 +5,7 @@ import { getRandomLogin } from './utils';
 
 export const renderingUserWidget = user => {
   const widgetUser = document.createElement('div');
-  widgetUser.className = 'users-list__user'; // Имеется старый id (animation)
+  widgetUser.className = 'users-list__user';
 
   const img = document.createElement('img');
   img.className = 'users-list__avatar';
@@ -24,11 +24,12 @@ export const renderingUserWidget = user => {
   if (user.location) {
     const userLocation = document.createElement('p');
     userLocation.className = 'users-list__location';
+    userLocation.innerHTML = user.location;
     userDesc.appendChild(userLocation);
 
     const iconLocation = document.createElement('i');
-    iconLocation.className = 'fas fa-map-marker-alt';
-    iconLocation.innerHTML = user.location;
+    iconLocation.className =
+      'users-list__icon users-list__icon_location fas fa-map-marker-alt';
     userLocation.appendChild(iconLocation);
   }
 
@@ -62,8 +63,6 @@ export const renderingUserWidget = user => {
     store.dispatch(addUser(response));
   });
   controlContainer.appendChild(btnRemove);
-
-  // ---------------------- //
 
   return widgetUser;
 };

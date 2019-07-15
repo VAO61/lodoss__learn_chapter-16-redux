@@ -27,7 +27,6 @@ const refresh = async () => {
   users.forEach(user => {
     store.dispatch(addUser(user));
   });
-  // renderingUserList(userWidgets);
 };
 
 apiGetUserList().then(userList => {
