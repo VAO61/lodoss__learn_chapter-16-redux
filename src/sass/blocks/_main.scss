@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+html {
+  color: $color-text;
+  font-size: 16px;
+}
+
+body {
+  height: 100vh;
+}

@@ -1,0 +1,62 @@
+.users-list {
+  &__user {
+    display: flex;
+    width: 515px;
+    padding-left: 20px;
+    border-bottom: solid 1px $color-text_lighter;
+    transition: transform $time_m ease-in-out;
+
+    &_active-event {
+      transform: translateX(-115px);
+    }
+  }
+
+  &__avatar,
+  &__desc {
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    width: 74px;
+    height: 74px;
+  }
+
+  &__desc {
+    align-self: center;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-grow: 2;
+    transition: padding-left $time_m ease-in-out;
+
+    &_active-event {
+      padding-left: 40px;
+    }
+  }
+
+  &__name {
+    font-size: 2em;
+    line-height: 1.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__location {
+    line-height: 1.2em;
+  }
+
+  &__icon {
+    padding-right: 5px;
+
+    &_location {
+      float: left;
+    }
+  }
+  &__link {
+    line-height: 1.4em;
+    color: $color-text_lighter;
+  }
+}
