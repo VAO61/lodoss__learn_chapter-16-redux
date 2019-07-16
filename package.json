@@ -1,8 +1,8 @@
 {
-  "name": "chapter-09",
+  "name": "chapter-16-redux",
   "version": "2.0.0",
   "main": "src/index.js",
-  "repository": "git@github.com:VAO61/lodoss__learn_chapter-09.git",
+  "repository": "git@github.com:VAO61/lodoss__learn_chapter-16-redux.git",
   "author": "VAO61 <vao.frontend@gmail.com>",
   "license": "MIT",
   "scripts": {
