@@ -9,6 +9,9 @@
     &_active-event {
       transform: translateX(-115px);
     }
+    &_remove {
+      transform: translateX(100%);
+    }
   }
 
   &__avatar,

@@ -57,7 +57,14 @@ export const renderingUserWidget = user => {
 
   const btnRemove = document.createElement('button');
   btnRemove.className = 'btn widget-users__btn widget-users__btn_remove';
+
+  function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   btnRemove.addEventListener('click', async () => {
+    widgetUser.classList.toggle('users-list__user_remove', true);
+    await timeout(600);
     store.dispatch(removeUser(user.id));
     const response = await apiGetUser(getRandomLogin());
     store.dispatch(addUser(response));
