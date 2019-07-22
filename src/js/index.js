@@ -11,7 +11,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 store.subscribe(() => {
   const state = store.getState();
-  const widgets = state.userDetailList.map(user => renderingUserWidget(user));
+  const widgets = state.userDetailList
+    .filter(user => user !== null)
+    .map(user => renderingUserWidget(user));
   renderingUserList(widgets);
 });
 
@@ -20,17 +22,19 @@ const refresh = async () => {
   const requestes = [];
 
   for (let i = 0; i < 3; i++) {
-    requestes.push(apiGetUser(getRandomLogin()));
+    const user = await apiGetUser(getRandomLogin());
+    store.dispatch(addUser(user));
   }
 
-  const users = await Promise.all(requestes);
-  users.forEach(user => {
-    store.dispatch(addUser(user));
-  });
+  // const users = await Promise.all(requestes);
+  // users.forEach(user => {
+  //   store.dispatch(addUser(user));
+  // });
 };
 
 apiGetUserList().then(userList => {
   store.dispatch(updateUserList(userList));
   refresh();
 });
+store.dispatch({});
 document.querySelector('#refresh').addEventListener('click', refresh);

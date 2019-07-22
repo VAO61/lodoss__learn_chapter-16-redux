@@ -5,6 +5,7 @@
     padding-left: 20px;
     border-bottom: solid 1px $color-text_lighter;
     transition: transform $time_m ease-in-out;
+    min-height: 50px;
 
     &_active-event {
       transform: translateX(-115px);
