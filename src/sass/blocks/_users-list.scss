@@ -5,9 +5,13 @@
     padding-left: 20px;
     border-bottom: solid 1px $color-text_lighter;
     transition: transform $time_m ease-in-out;
+    min-height: 50px;
 
     &_active-event {
       transform: translateX(-115px);
+    }
+    &_remove {
+      transform: translateX(100%);
     }
   }
 
@@ -24,6 +28,8 @@
   }
 
   &__desc {
+    align-self: center;
+    overflow: hidden;
     padding-left: 20px;
     padding-right: 20px;
     flex-grow: 2;
@@ -37,15 +43,22 @@
   &__name {
     font-size: 2em;
     line-height: 1.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__location {
     line-height: 1.2em;
-    & i {
-      padding-right: 5px;
-    }
   }
 
+  &__icon {
+    padding-right: 5px;
+
+    &_location {
+      float: left;
+    }
+  }
   &__link {
     line-height: 1.4em;
     color: $color-text_lighter;
